@@ -10,14 +10,12 @@
   "author": "Faraz Patankar",
   "license": "MIT",
   "devDependencies": {
-    "@types/cron": "^2.0.1",
     "@types/node": "^20.11.25",
     "typescript": "^5.4.2"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.529.1",
     "@aws-sdk/lib-storage": "^3.529.1",
-    "cron": "^3.1.6",
     "envsafe": "^2.0.3",
     "filesize": "^10.1.0"
   },

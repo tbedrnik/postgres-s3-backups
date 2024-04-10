@@ -1,27 +1,15 @@
-import { CronJob } from "cron";
 import { backup } from "./backup";
-import { env } from "./env";
 
 console.log("NodeJS Version: " + process.version);
 
-const tryBackup = async () => {
-  try {
-    await backup();
-  } catch (error) {
+console.log("Running backup...");
+
+backup()
+  .then(() => {
+    console.log("Backup finished...");
+    process.exit(0);
+  })
+  .catch((error) => {
     console.error("Error while running backup: ", error);
-  }
-}
-
-const job = new CronJob(env.BACKUP_CRON_SCHEDULE, async () => {
-  await tryBackup();
-});
-
-if (env.RUN_ON_STARTUP) {
-  console.log("Running on start backup...");
-
-  tryBackup();
-}
-
-job.start();
-
-console.log("Backup cron scheduled...");
+    process.exit(1);
+  });
